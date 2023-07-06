@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Your Website Title</title>
+
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-BD98V96a2uVHxvzZXMZyVK9DoGTbOsEEmLPB+xCAdmKyRYiC95X0oIs8swTvdzL/+ay5XpIqWIl4h6EerCLCgA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'upload' %}">Upload</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
+
+
+
+
