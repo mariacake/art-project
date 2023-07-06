@@ -48,14 +48,14 @@ def contact(request):
 
 def search(request):
     query = request.GET.get('query')
-    search_results = []
+
 
     if query:
-        search_results = Artwork.objects.filter(
-            Q(title__icontains=query)
-        )
+        artworks = Artwork.objects.filter(title__icontains=query)
+    else:
+        artworks = []
 
-    return render(request, 'search_results.html', {'query': query, 'search_results': search_results})
+    return render(request, 'search_results.html', {'artworks': artworks, 'query': query})
 
 def share_facebook(request, artwork_id):
     artwork = get_object_or_404(Artwork, pk=artwork_id)
@@ -63,9 +63,3 @@ def share_facebook(request, artwork_id):
     facebook_url = f"https://www.facebook.com/sharer/sharer.php?u={share_url}"
     return redirect(facebook_url)
 
-def share_twitter(request, artwork_id):
-    artwork = get_object_or_404(Artwork, pk=artwork_id)
-    share_url = request.build_absolute_uri(artwork.image.url)
-    artwork_title = artwork.title
-    twitter_url = f"https://twitter.com/intent/tweet?url={share_url}&text=Check out this artwork: {artwork_title}"
-    return redirect(twitter_url)

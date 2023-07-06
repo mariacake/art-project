@@ -1,37 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Artwork Gallery</h1>
+  <h1>Our artwork</h1>
   <div class="gallery">
     {% if artworks %}
-      <div class="grid">
-        {% for artwork in artworks %}
-          <div class="artwork-item">
-            <a href="{{ artwork.image.url }}" target="_blank">
-              <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-            </a>
-            <div class="social-icons">
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}{{ artwork.image.url }}" target="_blank">
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}{{ artwork.image.url }}&text=Check out this artwork: {{ artwork.title }}" target="_blank">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <!-- Add more social media sharing buttons here -->
-            </div>
-          </div>
-        {% endfor %}
+    <div class = 'artwork-container'>
+      {% for artwork in artworks %}
+        <div class="artwork-item">
+          <h2>{{ artwork.title }}</h2>
+          <a href="{{ artwork.image.url }}" target="_blank">
+            <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" class="artwork-image">
+          </a>
+        </div>
+      {% endfor %}
       </div>
     {% else %}
       <p>Nothing here yet :(</p>
     {% endif %}
 
+    <div class = 'link-container'?>
     <a href="{% url 'upload' %}" class="upload-link">Be an artist!</a>
     <a href="{% url 'contact' %}">Contact us!</a>
-    <form action="/search/" method="get">
+    </div>
+
+    <form action="{% url 'search' %}" method="get">
       <input type="text" name="query" placeholder="Search">
       <button type="submit">Search</button>
     </form>
   </div>
-
 {% endblock %}
