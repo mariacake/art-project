@@ -20,15 +20,6 @@
   max-height: 100%;
 }
 
-.social-icons a {
-  margin-right: 5px;
-  color: #333;
-  text-decoration: none;
-}
-
-.social-icons i {
-  font-size: 20px;
-}
 
 .link-container {
   display: flex;

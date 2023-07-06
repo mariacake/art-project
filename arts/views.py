@@ -3,7 +3,7 @@ from .forms import ArtworkForm, ContactForm
 from django.core.mail import send_mail
 from .models import Artwork
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect
+
 
 def upload_artwork(request):
     if request.method == 'POST':
@@ -57,9 +57,5 @@ def search(request):
 
     return render(request, 'search_results.html', {'artworks': artworks, 'query': query})
 
-def share_facebook(request, artwork_id):
-    artwork = get_object_or_404(Artwork, pk=artwork_id)
-    share_url = request.build_absolute_uri(artwork.image.url)
-    facebook_url = f"https://www.facebook.com/sharer/sharer.php?u={share_url}"
-    return redirect(facebook_url)
+
 
